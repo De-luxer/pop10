@@ -18,6 +18,7 @@ namespace pop10
         {
             InitializeComponent();
         }
+
         //Переменная соединения
         MySqlConnection conn;
         //DataAdapter представляет собой объект Command , получающий данные из источника данных.
@@ -57,6 +58,7 @@ namespace pop10
             for (int i = 0; i < count_rows; i++)
             {
                 DateTime id_selected_status = DateTime.Parse(dataGridView1.Rows[i].Cells[3].Value.ToString());
+
                 if (id_selected_status < DateTime.Parse(data1))
                 {
                     //Красим в красный
@@ -197,7 +199,6 @@ namespace pop10
 
             }
             dataGridView1.CurrentRow.Selected = true;
-            
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -232,7 +233,23 @@ namespace pop10
         {
             /*
             string s = textBox1.Text;
-            Regex regex = new Regex(@"\w*\w*");
+            string pattern = @"\w";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (Regex.IsMatch(s[i].ToString(), pattern, RegexOptions.IgnoreCase))
+                {
+                    Console.WriteLine(s[i]);
+                    bSource.Filter = $"title_magaz = '{s[i]}'";
+                    label4.Text = $"Совадения найдены";
+                }
+                else
+                {
+                    label4.Text = "Совпадений не найдено";
+                }
+            }
+            /////////////////////////////////////////////////////////////////////////////////
+            string s = textBox1.Text;
+            Regex regex = new Regex(@"(\w*)(\w*)");
             MatchCollection matches = regex.Matches(s);
             if (matches.Count > 0)
             {
